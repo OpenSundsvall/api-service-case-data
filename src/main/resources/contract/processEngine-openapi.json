@@ -1,0 +1,148 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Process Engine",
+    "contact" : { },
+    "license" : {
+      "name" : "MIT License",
+      "url" : "https://opensource.org/licenses/MIT"
+    },
+    "version" : "0.1"
+  },
+  "servers" : [ {
+    "url" : "https://api-i-test.sundsvall.se/process-engine/1.0"
+  } ],
+  "security" : [ {
+    "default" : [ ]
+  } ],
+  "paths" : {
+    "/process-engine/update-process" : {
+      "post" : {
+        "tags" : [ "camunda-endpoints" ],
+        "operationId" : "updateParkingPermitProcess",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CaseObject"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application & Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/process-engine/start-process" : {
+      "post" : {
+        "tags" : [ "camunda-endpoints" ],
+        "operationId" : "startParkingPermitProcess",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CaseObject"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ParkingPermitResponse"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "Application & Application User",
+        "x-throttling-tier" : "Unlimited"
+      }
+    },
+    "/api-docs" : {
+      "get" : {
+        "tags" : [ "API" ],
+        "summary" : "OpenAPI",
+        "operationId" : "getApiDocs",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/yaml" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "default" : [ ]
+        } ],
+        "x-auth-type" : "None",
+        "x-throttling-tier" : "Unlimited",
+        "x-wso2-mutual-ssl" : "Optional"
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "CaseObject" : {
+        "type" : "object",
+        "properties" : {
+          "processName" : {
+            "type" : "string"
+          },
+          "caseNumber" : {
+            "type" : "string"
+          },
+          "processInstanceId" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ParkingPermitResponse" : {
+        "type" : "object",
+        "properties" : {
+          "processId" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "securitySchemes" : {
+      "default" : {
+        "type" : "oauth2",
+        "flows" : {
+          "implicit" : {
+            "authorizationUrl" : "https://api-i-test.sundsvall.se/authorize",
+            "scopes" : { }
+          }
+        }
+      }
+    }
+  }
+}

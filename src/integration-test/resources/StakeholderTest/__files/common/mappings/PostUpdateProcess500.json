@@ -1,0 +1,24 @@
+{
+  "request": {
+    "urlPathPattern": "/process-engine/1.0/process/update-process",
+    "method": "POST",
+    "bodyPatterns": [
+      {
+        "contains": "INTERNAL_SERVER_ERROR"
+      }
+    ]
+  },
+  "response": {
+    "status" : 200,
+    "headers" : {
+      "access-control-allow-headers" : [ "*" ],
+      "access-control-allow-methods" : [ "*" ],
+      "access-control-allow-origin" : [ "*" ],
+      "access-control-expose-headers" : [ "" ],
+      "content-type" : [ "application/json" ],
+      "date" : [ "Fri, 17 Jun 2022 07:37:05 GMT" ],
+      "x-request-id" : [ "e062039a-8d5a-4773-93e1-359b98c9ac32" ]
+    },
+    "bodyFileName": "common/response/PostUpdateProcess200.json"
+  }
+}
